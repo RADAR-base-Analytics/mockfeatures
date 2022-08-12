@@ -1,12 +1,15 @@
 input_data:
-    data_location: radar-pipeline/mock-data/mock
+    data_location: mock
     data_format: csv
 
 project:
     project_name: mock_project
 
 features:
-    - 'mock'
+    - 'mock-features/features.py'
+
+feature_group:
+    - MockFeatureGroup
 
 output_data:
     output_location: mock
