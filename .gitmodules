@@ -1,4 +1,5 @@
-[submodule "radar-pipeline"]
+[submodule "radarpipeline"]
 	path = radarpipeline
 	url = https://github.com/RADAR-base/radarpipeline/
 	branch = dev
+	
