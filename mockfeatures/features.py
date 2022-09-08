@@ -1,9 +1,4 @@
-# insert at 1, 0 is the script path (or '' in REPL)
-import sys
-
-sys.path.insert(1, "../radar-pipeline/")
 import pandas as pd
-
 from radarpipeline.datalib import RadarData
 from radarpipeline.features import Feature, FeatureGroup
 

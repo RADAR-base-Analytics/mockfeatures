@@ -1,1 +1,5 @@
-from .mockfeatures.features import MockFeatureGroup
+from .mockfeatures.features import (
+    MockFeatureGroup,
+    PhoneBatteryChargingDuration,
+    StepCountPerDay,
+)
