@@ -57,7 +57,6 @@ class PhoneBatteryChargingDuration(Feature):
             df_phone_battery_level["value.statusTime"].dt.total_seconds() / 60
         )
         df_phone_battery_level = df_phone_battery_level.reset_index(drop=True)
-        df_phone_battery_level = df_phone_battery_level.reset_index(drop=True)
         return df_phone_battery_level
 
 
