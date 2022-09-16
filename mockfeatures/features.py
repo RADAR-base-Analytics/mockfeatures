@@ -45,18 +45,18 @@ class PhoneBatteryChargingDuration(Feature):
         df_phone_battery_level["value.statusTime"] = (
             df_phone_battery_level.groupby("key.userId")["value.time"].diff().shift(-1)
         )
-        df_phone_battery_level = df_phone_battery_level[
-            df_phone_battery_level["value.status"] == "CHARGING"
-        ]
         df_phone_battery_level = (
             df_phone_battery_level.groupby(["key.userId", "date", "value.status"])
             .agg({"value.statusTime": "sum"})
-            .reset_index(drop=True)
+            .reset_index()
         )
-        df_phone_battery_level["value.statusTime"] = (
+
+        df_phone_battery_level = df_phone_battery_level[
+            df_phone_battery_level["value.status"] == "CHARGING"
+        ]
+        df_phone_battery_level["value.statusTimeInSeconds"] = (
             df_phone_battery_level["value.statusTime"].dt.total_seconds() / 60
         )
-        df_phone_battery_level = df_phone_battery_level.reset_index(drop=True)
         return df_phone_battery_level
 
 
@@ -77,5 +77,5 @@ class StepCountPerDay(Feature):
         df_total_step_count = df_step_count.groupby(["key.userId", "date"]).agg(
             {"value.steps": "sum"}
         )
-        df_total_step_count = df_total_step_count.reset_index(drop=True)
+        df_total_step_count = df_total_step_count.reset_index()
         return df_total_step_count
