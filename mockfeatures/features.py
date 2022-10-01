@@ -14,13 +14,7 @@ class MockFeatureGroup(FeatureGroup):
         """
         Preprocess the data for each feature in the group.
         """
-        pass
-
-    def compute_features(self, data: RadarData) -> RadarData:
-        """
-        compute and combine the features for each feature in the group.
-        """
-        pass
+        return data
 
 
 class PhoneBatteryChargingDuration(Feature):
@@ -29,7 +23,10 @@ class PhoneBatteryChargingDuration(Feature):
         self.description = "The duration of the phone battery charging"
         self.required_input_data = ["android_phone_battery_level"]
 
-    def calculate(self, data: RadarData) -> float:
+    def preprocess(self, data: RadarData) -> RadarData:
+        """
+        Preprocess the data for each feature in the group.
+        """
         df_phone_battery_level = data.get_combined_data_by_variable(
             "android_phone_battery_level"
         )
@@ -42,6 +39,10 @@ class PhoneBatteryChargingDuration(Feature):
                 ["key.userId", "value.time", "value.batteryLevel"]
             ].duplicated()
         ]
+        return df_phone_battery_level
+
+    def calculate(self, data) -> float:
+        df_phone_battery_level = data
         df_phone_battery_level["value.statusTime"] = (
             df_phone_battery_level.groupby("key.userId")["value.time"].diff().shift(-1)
         )
@@ -66,7 +67,10 @@ class StepCountPerDay(Feature):
         self.description = "The number of steps per day"
         self.required_input_data = ["android_phone_step_count"]
 
-    def calculate(self, data: RadarData) -> float:
+    def preprocess(self, data: RadarData) -> RadarData:
+        """
+        Preprocess the data for each feature in the group.
+        """
         df_step_count = data.get_combined_data_by_variable("android_phone_step_count")
         df_step_count["time"] = pd.to_datetime(df_step_count["value.time"], unit="s")
         df_step_count["date"] = df_step_count["time"].dt.date
@@ -74,6 +78,10 @@ class StepCountPerDay(Feature):
             ~df_step_count[["key.userId", "value.time", "value.steps"]].duplicated()
         ]
         df_step_count = df_step_count.reset_index(drop=True)
+        return df_step_count
+
+    def calculate(self, data) -> float:
+        df_step_count = data
         df_total_step_count = df_step_count.groupby(["key.userId", "date"]).agg(
             {"value.steps": "sum"}
         )
