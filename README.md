@@ -7,7 +7,7 @@ A example pipeline ilustrative of loading RADAR-data and generating some simple 
 Mock Features pipeline
 
 # Description
-The Mock pipeline downloads the data from the [mockdata](https://github.com/RADAR-base-Analytics/mockdata) repository and saves it as a submodule. The mock pipeline used this mock data to calcualte mock features
+This Mock pipeline downloads the data from the [mockdata](https://github.com/RADAR-base-Analytics/mockdata) repository and saves it as a submodule. mockfeatures pipeline uses this mock data to calculate mock features for illustrative purposes.
 
 ## Data
 The data is stored as .csv.gz. format, which the I/O module reads and convert into a Spark DataFrame for further processing.
