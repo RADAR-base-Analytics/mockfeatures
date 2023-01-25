@@ -3,3 +3,8 @@ from .mockfeatures.features import (
     PhoneBatteryChargingDuration,
     StepCountPerDay,
 )
+
+from .mockfeatures.features2 import (
+    MockFeatureGroup2,
+    StepCountPerHour
+)
