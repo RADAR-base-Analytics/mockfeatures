@@ -1,0 +1,28 @@
+project:
+    project_name: mock_project
+    description: mock_description
+    version: mock_version
+
+input_data:
+    data_location: mock
+    local_directory: mockdata/mockdata
+    data_format: csv
+
+configurations:
+    df_type: 'pandas'
+
+features:
+    - location: 'https://github.com/RADAR-base-Analytics/mockfeatures'
+      branch: main
+      feature_groups:
+          - MockFeatureGroup
+          - MockFeatureGroup2
+      feature_names:
+        - all
+        - StepCountPerHour
+
+output_data:
+    output_location: local
+    local_directory: output/mockdata
+    data_format: csv
+    compress: false
