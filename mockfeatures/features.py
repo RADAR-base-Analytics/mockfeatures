@@ -79,6 +79,7 @@ class StepCountPerDay(Feature):
         df_step_count = df_step_count[
             ~df_step_count[["key.userId", "value.time", "value.steps"]].duplicated()
         ]
+        df_step_count = df_step_count.sort_values(["key.userId", "value.time"])
         df_step_count = df_step_count.reset_index(drop=True)
         return df_step_count
 
