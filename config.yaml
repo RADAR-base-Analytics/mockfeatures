@@ -13,8 +13,13 @@ configurations:
 
 features:
     - location: 'https://github.com/RADAR-base-Analytics/mockfeatures'
+      branch: main
       feature_groups:
           - MockFeatureGroup
+          - MockFeatureGroup2
+      feature_names:
+        - all
+        - StepCountPerHour
 
 output_data:
     output_location: local
