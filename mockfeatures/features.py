@@ -39,6 +39,8 @@ class PhoneBatteryChargingDuration(Feature):
                 ["key.userId", "value.time", "value.batteryLevel"]
             ].duplicated()
         ]
+        df_phone_battery_level = df_phone_battery_level.sort_values(["key.userId", "value.time"])
+        df_phone_battery_level = df_phone_battery_level.reset_index(drop=True)
         return df_phone_battery_level
 
     def calculate(self, data) -> float:
